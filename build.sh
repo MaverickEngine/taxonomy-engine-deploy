@@ -3,6 +3,7 @@
 wget https://github.com/j-norwood-young/taxonomy-engine/archive/refs/heads/main.zip
 unzip main.zip
 rm main.zip
+rm taxonomy-engine-main/README.md
 mv taxonomy-engine-main/* .
 rm -rf taxonomy-engine-main
 npm install
