@@ -1,0 +1,51 @@
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/less-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/components/TaxonomyEngineNavigation.vue?vue&type=style&index=0&id=5bc51017&lang=less&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+#taxonomyengine_navigation[data-v-5bc51017] {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 20px;
+}
+#taxonomyengine_navigation .nav_arrow[data-v-5bc51017] {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  background-color: #4e9c4e;
+  padding-left: 15px;
+  border-radius: 8%;
+  margin: 5px;
+}
+#taxonomyengine_navigation .arrow[data-v-5bc51017] {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+#taxonomyengine_navigation .right[data-v-5bc51017] {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+#taxonomyengine_navigation .left[data-v-5bc51017] {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+#taxonomyengine_navigation .up[data-v-5bc51017] {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+#taxonomyengine_navigation .down[data-v-5bc51017] {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+#taxonomyengine_navigation .done[data-v-5bc51017] {
+  background-color: #4e9c4e;
+  border-radius: 5%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 10px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+

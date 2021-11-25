@@ -1,0 +1,1356 @@
+[
+    {
+        "name": "City",
+        "slug": "city",
+        "description": "",
+        "children": [
+            {
+                "name": "Bloemfontein",
+                "slug": "bloemfontein",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Cape Town",
+                "slug": "cape-town",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Durban",
+                "slug": "durban",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Johannesburg",
+                "slug": "johannesburg",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "London",
+                "slug": "london",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Nelspruit",
+                "slug": "nelspruit",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "New York",
+                "slug": "new-york",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Pietermaritzburg",
+                "slug": "pietermaritzburg",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Pretoria",
+                "slug": "pretoria",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Qeberha",
+                "slug": "qeberha",
+                "description": "",
+                "parent": "city"
+            },
+            {
+                "name": "Washington",
+                "slug": "washington",
+                "description": "",
+                "parent": "city"
+            }
+        ]
+    },
+    {
+        "name": "Article Type",
+        "slug": "article-type",
+        "description": "",
+        "children": [
+            {
+                "name": "Analysis",
+                "slug": "analysis",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Callout/Hearken",
+                "slug": "callout-hearken",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Cartoon",
+                "slug": "cartoon",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Commentary",
+                "slug": "commentary",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Explainer",
+                "slug": "explainer",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Feature",
+                "slug": "feature",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "How-To",
+                "slug": "how-to",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Investigation",
+                "slug": "investigation",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Long Report",
+                "slug": "long-report",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Op-Ed",
+                "slug": "op-ed",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Opinion",
+                "slug": "opinion",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Podcast",
+                "slug": "podcast",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Profile",
+                "slug": "profile",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Reader Letter",
+                "slug": "reader-letter",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Review",
+                "slug": "review",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Satire",
+                "slug": "satire",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Short Report",
+                "slug": "short-report",
+                "description": "",
+                "parent": "article-type"
+            },
+            {
+                "name": "Solutions Journalism",
+                "slug": "solutions-journalism",
+                "description": "",
+                "parent": "article-type"
+            }
+        ]
+    },
+    {
+        "name": "Embedded Media",
+        "slug": "embedded-media",
+        "description": "",
+        "children": [
+            {
+                "name": "Audio",
+                "slug": "audio",
+                "description": "",
+                "parent": "embedded-media"
+            },
+            {
+                "name": "Image",
+                "slug": "image",
+                "description": "",
+                "parent": "embedded-media"
+            },
+            {
+                "name": "Video",
+                "slug": "video",
+                "description": "",
+                "parent": "embedded-media"
+            }
+        ]
+    },
+    {
+        "name": "Hierarchy Need",
+        "slug": "hierarchy-need",
+        "description": "",
+        "children": [
+            {
+                "name": "Esteem",
+                "slug": "esteem",
+                "description": "",
+                "parent": "hierarchy-need"
+            },
+            {
+                "name": "Love and Belonging",
+                "slug": "love-and-belonging",
+                "description": "",
+                "parent": "hierarchy-need"
+            },
+            {
+                "name": "Physiological",
+                "slug": "physiological",
+                "description": "",
+                "parent": "hierarchy-need"
+            },
+            {
+                "name": "Safety",
+                "slug": "safety",
+                "description": "",
+                "parent": "hierarchy-need"
+            },
+            {
+                "name": "Self-Actualisation",
+                "slug": "self-actualisation",
+                "description": "",
+                "parent": "hierarchy-need"
+            }
+        ]
+    },
+    {
+        "name": "Story Location",
+        "slug": "story-location",
+        "description": "",
+        "children": [
+            {
+                "name": "International",
+                "slug": "international",
+                "description": "",
+                "parent": "story-location"
+            },
+            {
+                "name": "National",
+                "slug": "national",
+                "description": "",
+                "parent": "story-location"
+            }
+        ]
+    },
+    {
+        "name": "Topical Themes",
+        "slug": "topical-themes",
+        "description": "",
+        "children": [
+            {
+                "name": "Business",
+                "slug": "business",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Companies",
+                        "slug": "companies",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Cryptocurrency",
+                        "slug": "cryptocurrency",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Economics",
+                        "slug": "economics",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Entrepreneurship",
+                        "slug": "entrepreneurship",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Financial Markets",
+                        "slug": "financial-markets",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Fraud & Corruption",
+                        "slug": "fraud-corruption-business",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Gig Economy",
+                        "slug": "gig-economy",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Innovation",
+                        "slug": "innovation",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Investments",
+                        "slug": "investments",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Leadership",
+                        "slug": "leadership",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Management",
+                        "slug": "management",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Personal Finance",
+                        "slug": "personal-finance",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Property",
+                        "slug": "property",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "SME",
+                        "slug": "sme",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Strategy",
+                        "slug": "strategy",
+                        "description": "",
+                        "parent": "business"
+                    },
+                    {
+                        "name": "Unemployment",
+                        "slug": "unemployment",
+                        "description": "",
+                        "parent": "business"
+                    }
+                ]
+            },
+            {
+                "name": "Civil Society",
+                "slug": "civil-society",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Activism",
+                        "slug": "activism",
+                        "description": "",
+                        "parent": "civil-society"
+                    },
+                    {
+                        "name": "Community",
+                        "slug": "community",
+                        "description": "",
+                        "parent": "civil-society"
+                    },
+                    {
+                        "name": "Poverty",
+                        "slug": "poverty",
+                        "description": "",
+                        "parent": "civil-society"
+                    },
+                    {
+                        "name": "Public Health",
+                        "slug": "public-health",
+                        "description": "",
+                        "parent": "civil-society"
+                    },
+                    {
+                        "name": "Service Delivery",
+                        "slug": "service-delivery-civil-society",
+                        "description": "",
+                        "parent": "civil-society"
+                    },
+                    {
+                        "name": "Social Inequality",
+                        "slug": "social-inequality",
+                        "description": "",
+                        "parent": "civil-society"
+                    }
+                ]
+            },
+            {
+                "name": "Climate Crisis",
+                "slug": "climate-crisis",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Conservation",
+                        "slug": "conservation",
+                        "description": "",
+                        "parent": "climate-crisis"
+                    },
+                    {
+                        "name": "Food Insecurity",
+                        "slug": "food-insecurity",
+                        "description": "",
+                        "parent": "climate-crisis"
+                    },
+                    {
+                        "name": "Global Heating",
+                        "slug": "global-heating",
+                        "description": "",
+                        "parent": "climate-crisis"
+                    },
+                    {
+                        "name": "Sea Level Rises",
+                        "slug": "sea-level-rises",
+                        "description": "",
+                        "parent": "climate-crisis"
+                    },
+                    {
+                        "name": "Socio-Economic Displacement",
+                        "slug": "socio-economic-displacement",
+                        "description": "",
+                        "parent": "climate-crisis"
+                    }
+                ]
+            },
+            {
+                "name": "Constitution",
+                "slug": "constitution",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Auditor-General",
+                        "slug": "auditor-general",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Commission for Gender Equality",
+                        "slug": "commission-for-gender-equality",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Commission of Inquiry",
+                        "slug": "commission-of-inquiry",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Commission on the Restitution of Land Rights",
+                        "slug": "commission-on-the-restitution-of-land-rights",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Electoral Commission",
+                        "slug": "electoral-commission",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "IARB",
+                        "slug": "iarb",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Judiciary",
+                        "slug": "judiciary",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Laws",
+                        "slug": "laws",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Parliament",
+                        "slug": "parliament-constitution",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "Public Protector",
+                        "slug": "public-protector",
+                        "description": "",
+                        "parent": "constitution"
+                    },
+                    {
+                        "name": "SAHRC",
+                        "slug": "sahrc",
+                        "description": "",
+                        "parent": "constitution"
+                    }
+                ]
+            },
+            {
+                "name": "Covid-19",
+                "slug": "covid-19",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Hesitancy",
+                        "slug": "hesitancy",
+                        "description": "",
+                        "parent": "covid-19"
+                    },
+                    {
+                        "name": "Infection Rates",
+                        "slug": "infection-rates",
+                        "description": "",
+                        "parent": "covid-19"
+                    },
+                    {
+                        "name": "Lockdown",
+                        "slug": "lockdown",
+                        "description": "",
+                        "parent": "covid-19"
+                    },
+                    {
+                        "name": "Misinformation",
+                        "slug": "misinformation",
+                        "description": "",
+                        "parent": "covid-19"
+                    },
+                    {
+                        "name": "Policy",
+                        "slug": "policy",
+                        "description": "",
+                        "parent": "covid-19"
+                    },
+                    {
+                        "name": "Vaccinations",
+                        "slug": "vaccinations",
+                        "description": "",
+                        "parent": "covid-19"
+                    },
+                    {
+                        "name": "Variants",
+                        "slug": "variants",
+                        "description": "",
+                        "parent": "covid-19"
+                    }
+                ]
+            },
+            {  
+                "name": "Crime",
+                "slug": "crime",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Domestic Violence",
+                        "slug": "domestic-violence",
+                        "description": "",
+                        "parent": "crime"
+                    },
+                    {
+                        "name": "Gang Violence",
+                        "slug": "gang-violence",
+                        "description": "",
+                        "parent": "crime"
+                    },
+                    {
+                        "name": "GBV",
+                        "slug": "gbv",
+                        "description": "",
+                        "parent": "crime"
+                    },
+                    {
+                        "name": "NPA",
+                        "slug": "npa",
+                        "description": "",
+                        "parent": "crime"
+                    },
+                    {
+                        "name": "Policing",
+                        "slug": "policing",
+                        "description": "",
+                        "parent": "crime"
+                    },
+                    {
+                        "name": "SIU",
+                        "slug": "siu",
+                        "description": "",
+                        "parent": "crime"
+                    },
+                    {
+                        "name": "White Collar",
+                        "slug": "white-collar",
+                        "description": "",
+                        "parent": "crime"
+                    }
+                ]
+            },
+            {
+                "name": "Disasters",
+                "slug": "disasters",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Genocide", 
+                        "slug": "genocide",
+                        "description": "",
+                        "parent": "disasters"
+                    },
+                    {
+                        "name": "Natural Disasters", 
+                        "slug": "natural-disasters",
+                        "description": "",
+                        "parent": "disasters"
+                    },
+                    {
+                        "name": "Road Accidents", 
+                        "slug": "road-accidents",
+                        "description": "",
+                        "parent": "disasters"
+                    },
+                    {
+                        "name": "War", 
+                        "slug": "war",
+                        "description": "",
+                        "parent": "disasters"
+                    }
+                ]
+            },
+            {
+                "name": "Education",
+                "slug": "education",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Child Abuse",
+                        "slug": "child-abuse",
+                        "description": "",
+                        "parent": "education"
+                    },
+                    {
+                        "name": "EdTech",
+                        "slug": "edtech",
+                        "description": "",
+                        "parent": "education"
+                    },
+                    {
+                        "name": "Fees",
+                        "slug": "fees",
+                        "description": "",
+                        "parent": "education"
+                    },
+                    {
+                        "name": "Governance",
+                        "slug": "governance",
+                        "description": "",
+                        "parent": "education"
+                    },
+                    {
+                        "name": "Innovation",
+                        "slug": "innovation-education",
+                        "description": "",
+                        "parent": "education"
+                    },
+                    {
+                        "name": "Policy",
+                        "slug": "policy-education",
+                        "description": "",
+                        "parent": "education"
+                    },
+                    {
+                        "name": "Schools",
+                        "slug": "schools",
+                        "description": "",
+                        "parent": "education"
+                    },
+                    {
+                        "name": "Tertiary Education",
+                        "slug": "tertiary-education",
+                        "description": "",
+                        "parent": "education"
+                    }
+                ]
+            },
+            {
+                "name": "Global Events",
+                "slug": "global-events",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Brics",
+                        "slug": "brics",
+                        "description": "",
+                        "parent": "global-events"
+                    },
+                    {
+                        "name": "China",
+                        "slug": "china",
+                        "description": "",
+                        "parent": "global-events"
+                    },
+                    {
+                        "name": "Europe",
+                        "slug": "europe",
+                        "description": "",
+                        "parent": "global-events"
+                    },
+                    {
+                        "name": "International Relational Policy",
+                        "slug": "international-relational-policy",
+                        "description": "",
+                        "parent": "global-events"
+                    },
+                    {
+                        "name": "Russia",
+                        "slug": "russia",
+                        "description": "",
+                        "parent": "global-events"
+                    },
+                    {
+                        "name": "Terrorism",
+                        "slug": "terrorism",
+                        "description": "",
+                        "parent": "global-events"
+                    },
+                    {
+                        "name": "UK Corruption",
+                        "slug": "uk-corruption",
+                        "description": "",
+                        "parent": "global-events"
+                    },
+                    {
+                        "name": "US Elections",
+                        "slug": "us-elections",
+                        "description": "",
+                        "parent": "global-events"
+                    }
+                ]
+            },
+            {
+                "name": "Government",
+                "slug": "government",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Budget",
+                        "slug": "budget",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Census",
+                        "slug": "census",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Fiscal Policy",
+                        "slug": "fiscal-policy",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Infrastructure",
+                        "slug": "infrastructure",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Municipalities",
+                        "slug": "municipalities",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Provincial",
+                        "slug": "provincial",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Service Delivery",
+                        "slug": "service-delivery",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Social Grants",
+                        "slug": "social-grants",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "SOEs",
+                        "slug": "soes",
+                        "description": "",
+                        "parent": "government"
+                    },
+                    {
+                        "name": "Taxation",
+                        "slug": "taxation",
+                        "description": "",
+                        "parent": "government"
+                    }
+                ]
+            },
+            {
+                "name": "Health",
+                "slug": "health",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Health Policy",
+                        "slug": "health-policy",
+                        "description": "",
+                        "parent": "health"
+                    },
+                    {
+                        "name": "Health Services",
+                        "slug": "health-services",
+                        "description": "",
+                        "parent": "health"
+                    },
+                    {
+                        "name": "Health Tech",
+                        "slug": "health-tech",
+                        "description": "",
+                        "parent": "health"
+                    },
+                    {
+                        "name": "Innovation",
+                        "slug": "innovation-health",
+                        "description": "",
+                        "parent": "health"
+                    }
+                ]
+            },
+            {
+                "name": "Lifestyle",
+                "slug": "lifestyle",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Addiction",
+                        "slug": "addiction",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Ageing",
+                        "slug": "ageing",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Arts",
+                        "slug": "arts",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Beauty",
+                        "slug": "beauty",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Books",
+                        "slug": "books",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Death",
+                        "slug": "death",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Emigration",
+                        "slug": "emigration",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Events",
+                        "slug": "events",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Fashion",
+                        "slug": "fashion",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Film",
+                        "slug": "film",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Food",
+                        "slug": "food",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Mental Health",
+                        "slug": "mental-health",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Mindfulness",
+                        "slug": "mindfulness",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Motoring",
+                        "slug": "motoring",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Music",
+                        "slug": "music",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Nature",
+                        "slug": "nature",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Parenting",
+                        "slug": "parenting",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Photography",
+                        "slug": "photography",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Privacy",
+                        "slug": "privacy",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Relationships",
+                        "slug": "relationships",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Spirituality",
+                        "slug": "spirituality",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Streaming",
+                        "slug": "streaming",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Theatre",
+                        "slug": "theatre",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Trauma",
+                        "slug": "trauma",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Travel",
+                        "slug": "travel",
+                        "description": "",
+                        "parent": "lifestyle"
+                    },
+                    {
+                        "name": "Wellness",
+                        "slug": "wellness",
+                        "description": "",
+                        "parent": "lifestyle"
+                    }
+                ]
+            },
+            {
+                "name": "Media",
+                "slug": "media",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Advertising",
+                        "slug": "advertising",
+                        "description": "",
+                        "parent": "media"
+                    },
+                    {
+                        "name": "Journalism",
+                        "slug": "journalism",
+                        "description": "",
+                        "parent": "media"
+                    },
+                    {
+                        "name": "Media Literacy",
+                        "slug": "media-literacy",
+                        "description": "",
+                        "parent": "media"
+                    },
+                    {
+                        "name": "Mis/Disinformation",
+                        "slug": "mis-disinformation",
+                        "description": "",
+                        "parent": "media"
+                    },
+                    {
+                        "name": "Regulation",
+                        "slug": "regulation",
+                        "description": "",
+                        "parent": "media"
+                    },
+                    {
+                        "name": "Social Media",
+                        "slug": "social-media",
+                        "description": "",
+                        "parent": "media"
+                    },
+                    {
+                        "name": "Sustainability",
+                        "slug": "sustainability",
+                        "description": "",
+                        "parent": "media"
+                    }
+                ]
+            },
+            {
+                "name": "Politics",
+                "slug": "politics",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "African Politics",
+                        "slug": "african-politics",
+                        "description": "",
+                        "parent": "politics"
+                    },
+                    {
+                        "name": "ANC Elections",
+                        "slug": "anc-elections",
+                        "description": "",
+                        "parent": "politics"
+                    },
+                    {
+                        "name": "By-Elections",
+                        "slug": "by-elections",
+                        "description": "",
+                        "parent": "politics"
+                    },
+                    {
+                        "name": "Fraud & Corruption",
+                        "slug": "fraud-corruption",
+                        "description": "",
+                        "parent": "politics"
+                    },
+                    {
+                        "name": "Local Elections",
+                        "slug": "local-elections",
+                        "description": "",
+                        "parent": "politics"
+                    },
+                    {
+                        "name": "National Elections",
+                        "slug": "national-elections",
+                        "description": "",
+                        "parent": "politics"
+                    },
+                    {
+                        "name": "Parliament",
+                        "slug": "parliament",
+                        "description": "",
+                        "parent": "politics"
+                    },
+                    {
+                        "name": "Political Parties",
+                        "slug": "political-parties",
+                        "description": "",
+                        "parent": "politics"
+                    }
+                ]
+            },
+            {
+                "name": "Sport",
+                "slug": "sport",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Athletics",
+                        "slug": "athletics",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Cheating",
+                        "slug": "cheating",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Cricket",
+                        "slug": "cricket",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Football",
+                        "slug": "football",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Golf",
+                        "slug": "golf",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Innovation",
+                        "slug": "innovation-sport",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Mental Health",
+                        "slug": "mental-health-sport",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Olympics",
+                        "slug": "olympics",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Psychology",
+                        "slug": "psychology",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Rugby",
+                        "slug": "rugby",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Sports Administration",
+                        "slug": "sports-administration",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Sports Personalities",
+                        "slug": "sports-personalities",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Swimming",
+                        "slug": "swimming",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Tennis",
+                        "slug": "tennis",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "Tournament",
+                        "slug": "tournament",
+                        "description": "",
+                        "parent": "sport"
+                    },
+                    {
+                        "name": "World Cup",
+                        "slug": "world-cup",
+                        "description": "",
+                        "parent": "sport"
+                    }
+                ]
+            },
+            {
+                "name": "Technology",
+                "slug": "technology",
+                "description": "",
+                "parent": "topical-themes",
+                "children": [
+                    {
+                        "name": "Apps",
+                        "slug": "apps",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Big Data",
+                        "slug": "big-data",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Big Tech",
+                        "slug": "big-tech",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Cybersecurity",
+                        "slug": "cybersecurity",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Founders",
+                        "slug": "founders",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Privacy",
+                        "slug": "privacy-technology",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Social Media",
+                        "slug": "social-media-technology",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Space Exploration",
+                        "slug": "space-exploration",
+                        "description": "",
+                        "parent": "technology"
+                    },
+                    {
+                        "name": "Startup Culture",
+                        "slug": "startup-culture",
+                        "description": "",
+                        "parent": "technology"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "User Info Need",
+        "slug": "user-info-need",
+        "description": "",
+        "parent": null,
+        "children": [
+            {
+                "name": "Divert Me",
+                "slug": "divert-me",
+                "description": "",
+                "parent": "user-info-need"
+            },
+            {
+                "name": "Educate Me",
+                "slug": "educate-me",
+                "description": "",
+                "parent": "user-info-need"
+            },
+            {
+                "name": "Give Me Perspective",
+                "slug": "give-me-perspective",
+                "description": "",
+                "parent": "user-info-need"
+            },
+            {
+                "name": "Keep Me On Trend",
+                "slug": "keep-me-on-trend",
+                "description": "",
+                "parent": "user-info-need"
+            },
+            {
+                "name": "Update Me",
+                "slug": "update-me",
+                "description": "",
+                "parent": "user-info-need"
+            }
+        ]
+    }
+]
