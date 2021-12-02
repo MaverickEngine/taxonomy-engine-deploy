@@ -5,7 +5,7 @@
  * Description: Categorise your WordPress content with the assistance of machine learning and crowdsourcing
  * Author: Daily Maverick, Jason Norwood-Young
  * Author URI: https://dailymaverick.co.za
- * Version: 0.0.5
+ * Version: 0.0.7
  * WC requires at least: 5.8.0
  * Tested up to: 5.8.1
  *
@@ -22,10 +22,11 @@ function taxonomy_engine_admin_init() {
         return;
     }
     $taxonomyengine_globals = [];
+    require_once(plugin_dir_path( __FILE__ ) . 'includes/admin/taxonomyengine-scripts.php' );
     require_once(plugin_basename('includes/admin/taxonomyengine-admin.php' ) );
     $taxonomyengine_admin = new TaxonomyEngineAdmin($taxonomyengine_globals);
 }
-add_action( 'init', 'taxonomy_engine_admin_init', 3 );
+add_action( 'init', 'taxonomy_engine_admin_init' );
 
 function taxonomy_engine_frontend_init() {
     require_once( plugin_dir_path( __FILE__ ) . 'includes/frontend/taxonomyengine-frontend-reviewer.php' );
@@ -36,26 +37,26 @@ add_action( 'init', 'taxonomy_engine_frontend_init', 3 );
 function taxonomy_engine_api_init() {
     $taxonomyengine_globals = [];
     require_once(plugin_basename('includes/api/taxonomyengine-api.php' ) );
-    $taxonomyengine_api = new TaxonomyEngineAPI($taxonomyengine_globals);
+    new TaxonomyEngineAPI($taxonomyengine_globals);
 }
 add_action( 'init', 'taxonomy_engine_api_init');
 
 function taxonomy_engine_navigation_init() {
     $taxonomyengine_globals = [];
     require_once(plugin_basename('includes/navigation/taxonomyengine-navigation.php' ) );
-    $taxonomyengine_navigation = new TaxonomyEngineNavigation($taxonomyengine_globals);
+    new TaxonomyEngineNavigation($taxonomyengine_globals);
 }
 add_action( 'init', 'taxonomy_engine_navigation_init');
 
 function taxonomy_engine_common_init() {
     require_once( plugin_dir_path( __FILE__ ) . 'includes/taxonomyengine-setup.php' );
-    $taxonomyengine_setup = new TaxonomyEngineSetup( $taxonomyengine_globals );
+    new TaxonomyEngineSetup( $taxonomyengine_globals );
 }
 add_action( 'init', 'taxonomy_engine_common_init', 2 );
 
 function taxonomy_engine_automl_init() {
     $taxonomyengine_globals = [];
     require_once(plugin_basename('includes/automl/taxonomyengine-automl.php' ) );
-    $taxonomyengine_automl = new TaxonomyEngineAutoML($taxonomyengine_globals);
+    new TaxonomyEngineAutoML($taxonomyengine_globals);
 }
 add_action( 'init', 'taxonomy_engine_automl_init');
