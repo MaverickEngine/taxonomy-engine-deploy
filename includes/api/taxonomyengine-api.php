@@ -8,6 +8,7 @@ class TaxonomyEngineAPI {
     }
     
     function register_api_routes() { // TODO: Clean this up
+        // Taxonomies
         register_rest_route( 'taxonomyengine/v1', '/taxonomies/(?P<post_id>[0-9]+)', [
             'methods' => 'GET',
             'callback' => [$this, 'get_taxonomies'],
@@ -32,10 +33,45 @@ class TaxonomyEngineAPI {
             'callback' => [$this, 'post_score'],
             'permission_callback' => [$this, 'check_post_access']
         ]);
+        // Reports
+        register_rest_route( 'taxonomyengine/v1', '/reports/review_end_histogram', [
+            'methods' => 'GET',
+            'callback' => [$this, 'get_review_end_histogram'],
+        ]);
+        // Reviewers
+        register_rest_route( 'taxonomyengine/v1', '/reviewers', [
+            'methods' => 'GET',
+            'callback' => [$this, 'get_reviewers'],
+            'permission_callback' => [$this, 'check_admin_access']
+        ]);
+        register_rest_route( 'taxonomyengine/v1', '/reviewers/users', [
+            'methods' => 'POST',
+            'callback' => [$this, 'search_users'],
+            'permission_callback' => [$this, 'check_admin_access']
+        ]);
+        register_rest_route( 'taxonomyengine/v1', '/reviewers/add_role/(?P<user_id>[0-9]+)', [
+            'methods' => 'GET',
+            'callback' => [$this, 'add_role'],
+            'permission_callback' => [$this, 'check_admin_access']
+        ]);
+        register_rest_route( 'taxonomyengine/v1', '/reviewers/remove_role/(?P<user_id>[0-9]+)', [
+            'methods' => 'GET',
+            'callback' => [$this, 'remove_role'],
+            'permission_callback' => [$this, 'check_admin_access']
+        ]);
+        register_rest_route( 'taxonomyengine/v1', '/reviewers/update_user_weight/(?P<user_id>[0-9]+)', [
+            'methods' => 'POST',
+            'callback' => [$this, 'update_user_weight'],
+            'permission_callback' => [$this, 'check_admin_access']
+        ]);
     }
 
     function check_post_access(WP_REST_Request $request) { // TODO: This needs to be changed for crowdsourced submissions, or have another endpoint for that
         return current_user_can('edit_posts');
+    }
+
+    function check_admin_access(WP_REST_Request $request) {
+        return current_user_can('manage_options');
     }
 
     function get_taxonomies($request) {
@@ -85,12 +121,12 @@ class TaxonomyEngineAPI {
         return $taxonomy;
     }
 
-    function get_review(WP_REST_Request $request) {
+    public function get_review(WP_REST_Request $request) {
         $post_id = $request->get_param('post_id');
         return $this->taxonomyengine_db->get_or_create_review(get_current_user_id(), $post_id);
     }   
 
-    function post_post_taxonomy(WP_REST_Request $request) {
+    public function post_post_taxonomy(WP_REST_Request $request) {
         global $wpdb;
         $post_id = $request->get_param('post_id');
         $user_id = get_current_user_id();
@@ -138,7 +174,7 @@ class TaxonomyEngineAPI {
         }
     }
 
-    function post_done(WP_REST_Request $request) {
+    public function post_done(WP_REST_Request $request) {
         $post_id = $request->get_param('post_id');
         $user_id = get_current_user_id();
         $review = $this->taxonomyengine_db->get_or_create_review($user_id, $post_id);
@@ -152,9 +188,122 @@ class TaxonomyEngineAPI {
         return $result;
     }
 
-    function post_score(WP_REST_Request $request) {
+    public function post_score(WP_REST_Request $request) {
         $post_id = $request->get_param('post_id');
         $result = $this->taxonomyengine_db->get_matched_tag_score($post_id);
         return $result;
+    }
+
+    public function get_review_end_histogram(WP_REST_Request $request) {
+        $review_end_histogram = $this->taxonomyengine_db->review_end_histogram();
+        return $review_end_histogram;
+    }
+
+    private function _map_user($user) {
+        $result = new stdClass();
+        $result->id = $user->ID;
+        $result->user_login = $user->user_login;
+        $result->display_name = $user->display_name;
+        $result->user_email = $user->user_email;
+        $result->taxonomyengine_reviewer_weight = $user->taxonomyengine_reviewer_weight;
+        $result->avatar = get_avatar_url($user->ID);
+        $result->roles = $user->roles;
+        return $result;
+    }
+
+    public function get_reviewers(WP_REST_Request $request) {
+        try {
+            $page = $_GET['page'];
+            if (!$page) {
+                $page = 1;
+            }
+            $user_query = new WP_User_Query([
+                'paged' => $page,
+                'role' => TAXONOMYENGINE_REVIEWER_ROLE,
+                'number' => 50,
+                'fields' => 'all_with_meta',
+            ]);
+            return [
+                "page" => $page,
+                "count" => $user_query->get_total(),
+                "data" => array_values(array_map([$this, "_map_user"], $user_query->get_results())),
+            ];
+        } catch (Exception $e) {
+            return new WP_REST_Response([ "success" => false, "error" => $e->getMessage() ], 400);
+        }
+    }
+
+    private function _search($data, $page=1, $size=50) {
+        $q = [
+            'number' => $size,
+            'fields' => 'all_with_meta',
+        ];
+        if ($data["search"]) {
+            $q["search"] = $data["search"] . "*";
+        }
+        if ($data["id"]) {
+            $q["search"] = $data["id"];
+            $q["search_columns"] = ["ID"];
+        }
+        if ($data["role"]) {
+            $q["role"] = $data["role"];
+        }
+        $user_query = new WP_User_Query($q);
+        return [
+            "page" => $page,
+            "size" => $size,
+            "count" => $user_query->get_total(),
+            "data" => array_values(array_map([ $this, "_map_user"], $user_query->get_results())),
+        ];
+    }
+
+    public function search_users(WP_REST_Request $request) {
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $page = $_GET['page'];
+            return $this->_search($data, $page);
+        } catch (Exception $e) {
+            return new WP_REST_Response([ "success" => false, "error" => $e->getMessage() ], 400);
+        }
+    }
+
+    public function add_role(WP_REST_Request $request) {
+        try {
+            $user_id = $request->get_param('user_id');
+            $user = new WP_User($user_id);
+            $user->add_role(TAXONOMYENGINE_REVIEWER_ROLE);
+            update_user_meta( $user_id, "taxonomyengine_reviewer_weight", get_option("taxonomyengine_default_starting_weight", TAXONOMYENGINE_DEFAULT_STARTING_WEIGHT) );
+            $users = $this->_search(["id" => $user_id]);
+            return new WP_REST_Response($users, 200);
+        } catch (Exception $e) {
+            return new WP_REST_Response([ "success" => false, "error" => $e->getMessage() ], 400);
+        }
+    }
+
+    public function remove_role(WP_REST_Request $request) {
+        try {
+            $user_id = $request->get_param('user_id');
+            $user = new WP_User($user_id);
+            $user->remove_role(TAXONOMYENGINE_REVIEWER_ROLE);
+            $users = $this->_search(["id" => $user_id]);
+            return new WP_REST_Response($users, 200);
+        } catch (Exception $e) {
+            return new WP_REST_Response([ "success" => false, "error" => $e->getMessage() ], 400);
+        }
+    }
+
+    public function update_user_weight(WP_REST_Request $request) {
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $user_id = $request->get_param('user_id');
+            $weight = $data["weight"];
+            if (empty($weight) || !is_numeric($weight) || $weight < 0 || $weight > 1) {
+                throw("Weight must be a number between 0 and 1");
+            }
+            update_user_meta( $user_id, "taxonomyengine_reviewer_weight", $weight );
+            return new WP_REST_Response([ "success" => true ], 200);
+        } catch (Exception $e) {
+            return new WP_REST_Response([ "success" => false, "error" => $e->getMessage() ], 400);
+        }
     }
 }

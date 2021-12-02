@@ -31,7 +31,11 @@ class TaxonomyEngineFrontendReviewer {
      */
     public function enqueue_styles() {
         if ($this->_show_content()) {
-            wp_enqueue_style( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.css', __FILE__ ), array(), '1.0.0' );
+            if ($this->developer_mode) {
+                wp_enqueue_style( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.css', __FILE__ ), array(), '1.0.0' );
+            } else {
+                wp_enqueue_style( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.min.css', __FILE__ ), array(), '1.0.0' );
+            }
         }
     }
 
@@ -45,7 +49,7 @@ class TaxonomyEngineFrontendReviewer {
             ?>
             <script type="text/javascript">
                 var taxonomyengine_post_id = <?= $id; ?>;
-                var _wpnonce = "<?= $_wpnonce; ?>";
+                var taxonomyengine_wpnonce = "<?= $_wpnonce; ?>";
             </script>
             <?php
         }

@@ -66,8 +66,10 @@ class TaxonomyEngineSetup {
             taxonomyengine_review_id mediumint(9) NOT NULL,
             taxonomy_id mediumint(9) NOT NULL,
             user_score float NOT NULL,
+            timestamp datetime DEFAULT now() NOT NULL,
             UNIQUE KEY id (id),
-            KEY taxonomyengine_review_id (taxonomyengine_review_id)
+            KEY taxonomyengine_review_id (taxonomyengine_review_id),
+            key timestamp (timestamp)
         ) $charset_collate;";
         $result = dbDelta( $reviews_taxonomy_sql );
 

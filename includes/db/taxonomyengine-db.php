@@ -147,4 +147,13 @@ class TaxonomyEngineDB {
         $result = $wpdb->get_results($sql);
         return $result;
     }
+
+    public function review_end_histogram() {
+        global $wpdb;
+        $sql = "SELECT date({$this->reviews_tablename}.review_end) AS date, COUNT(1) AS count 
+        FROM {$this->reviews_tablename}
+        WHERE review_end IS NOT NULL AND review_end != '0000-00-00'
+        GROUP BY 1";
+        return $wpdb->get_results($sql);
+    }
 }

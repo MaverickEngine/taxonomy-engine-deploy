@@ -7,6 +7,7 @@ class TaxonomyEngineSettings {
         "taxonomyengine_percentage_pass",
         "taxonomyengine_pass_score",
         "taxonomyengine_developer_mode",
+        "taxonomyengine_default_starting_weight",
     ];
 
     const TAXONOMYENGINE_ARTICLE_SELECTION_STRATEGIES = [
@@ -43,7 +44,6 @@ class TaxonomyEngineSettings {
         if (!current_user_can('manage_options')) {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
-        // TaxonomyEngineSetup::check_setup_tasks();
         if (!TaxonomyEngineSetup::has_terms()) {
             echo '<div class="notice notice-error"><p>TaxonomyEngine has no terms set. Please <a href="/wp-admin/edit-tags.php?taxonomy=taxonomyengine">set some terms</a> or <a href="/wp-admin/admin.php?page=taxonomyengine&taxonomyengine_predefined_terms=true">use our pre-defined terms</a>.</p></div>';
         }
