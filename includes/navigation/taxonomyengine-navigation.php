@@ -24,22 +24,30 @@ class TaxonomyEngineNavigation {
     }
 
     function get_next_article() {
-        $strategy = strtolower(get_option( "taxonomyengine_article_strategy", "random" ));
-        $reviews = $this->taxonomyengine_db->reviewed_posts(get_current_user_id());
-        $exclude_ids = array_map(function($review) {
-            return $review->post_id;
-        }, $reviews);
-        switch ($strategy) {
-            case "random":
-                $post = $this->random_post($exclude_ids);
-            case "newest":
-                $post = $this->newest($exclude_ids);
-            case "oldest":
-                $post = $this->oldest($exclude_ids);
-            default:
-                $post = $this->random_post($exclude_ids);
+        try {
+            define('WP_DEBUG', true);
+            define('WP_DEBUG_LOG', true);
+            define('WP_DEBUG_DISPLAY', true);
+            @ini_set('display_errors', 1);
+            $strategy = strtolower(get_option( "taxonomyengine_article_strategy", "random" ));
+            $reviews = $this->taxonomyengine_db->reviewed_posts(get_current_user_id());
+            $exclude_ids = array_map(function($review) {
+                return $review->post_id;
+            }, $reviews);
+            switch ($strategy) {
+                case "random":
+                    $post = $this->random_post($exclude_ids);
+                case "latest":
+                    $post = $this->latest_post($exclude_ids);
+                case "oldest":
+                    $post = $this->oldest_post($exclude_ids);
+                default:
+                    $post = $this->random_post($exclude_ids);
+            }
+            return $post;
+        } catch (Exception $e) {
+            return new WP_Error( 'error', $e->getMessage(), array( 'status' => 500 ) );
         }
-        return $post;
     }
 
     function get_next_article_redirect() {
@@ -58,7 +66,7 @@ class TaxonomyEngineNavigation {
         return $posts[0];
     }
 
-    function newest_post($exclude_ids) {
+    function latest_post($exclude_ids) {
         $posts = get_posts([
             'post_type' => $this->post_types,
             'numberposts' => 1,
