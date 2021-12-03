@@ -1,6 +1,7 @@
 #!/bin/sh
 
 rm -rf includes
+rm -rf templates
 rm -rf data
 rm -rf dist
 wget https://github.com/j-norwood-young/taxonomy-engine/archive/refs/heads/main.zip

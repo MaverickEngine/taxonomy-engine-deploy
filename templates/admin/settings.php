@@ -44,6 +44,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th scope="row"><?php _e("What is the default starting weight for new reviewers?", "taxonomyengine") ?></th>
+                    <td>
+                        <input type="number" name="taxonomyengine_default_starting_weight" value="<?php echo get_option('taxonomyengine_default_starting_weight', TAXONOMYENGINE_DEFAULT_STARTING_WEIGHT) ?>" min="0" max="1" step="0.1">
+                    </td>
+                </tr>
+                <tr>
                     <th scope="row"><?php _e("Developer mode", "taxonomyengine") ?></th>
                     <td>
                         <input type="checkbox" name="taxonomyengine_developer_mode" value="1" <?php echo get_option('taxonomyengine_developer_mode') ? 'checked' : '' ?>>
