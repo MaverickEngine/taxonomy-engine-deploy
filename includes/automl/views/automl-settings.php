@@ -1,3 +1,6 @@
+<?php
+$google_credentials = TaxonomyEngineAutoML::get_google_credentials();
+?>
 <div class="wrap">
     <h2><?php _e( 'TaxonomyEngine AutoML Settings', 'taxonomyengine' ); ?></h2>
     <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post" enctype="multipart/form-data">
@@ -17,6 +20,9 @@
         <table class="form-table">
             <tbody>
                 <tr>
+                    <?php
+                    if (!$google_credentials) {
+                    ?>
                     <th scope="row"><?php _e("Google credentials", "taxonomyengine") ?></th>
                     <!-- Upload google credentials file -->
                     <td>
@@ -25,28 +31,30 @@
                             <?php _e("Upload your Google credentials file", "taxonomyengine") ?>
                         </p>
                     </td>
+                    <?php
+                    } else {
+                    ?>
                     <td>
-                        <?php
-                            $google_credentials = TaxonomyEngineAutoML::get_google_credentials();
-                            
-                            if ($google_credentials) {
-                            ?>
-                                <p class="description">
-                                    <strong><?php _e("Project ID:", "taxonomyengine") ?></strong>
-                                    <?= $google_credentials["project_id"] ?>
-                                </p>
-                                <p class="description">
-                                    <strong><?php _e("Client email:", "taxonomyengine") ?></strong>
-                                    <?= $google_credentials["client_email"] ?>
-                                </p>
-                                <p>
-                                    <!-- Delete button -->
-                                    <input type="submit" name="taxonomyengine_delete_google_credentials" id="taxonomyengine_delete_google_credentials" class="button button-secondary" value="<?php _e("Delete Google credentials", "taxonomyengine") ?>" onclick="return(confirm('Are you sure you want to delete your Google credentials?'))" />
-                                </p>
-                            <?php
-                            }
-                        ?>
+                        <p class="description">
+                            <strong><?php _e("Project ID:", "taxonomyengine") ?></strong>
+                            <?= $google_credentials["project_id"] ?>
+                        </p>
+                        <p class="description">
+                            <strong><?php _e("Client email:", "taxonomyengine") ?></strong>
+                            <?= $google_credentials["client_email"] ?>
+                        </p>
+                        <p class="description">
+                            <strong><?php _e("Dataset ID:", "taxonomyengine") ?></strong>
+                            <?= get_option("taxonomyengine_automl_dataset_id") ?>
+                        </p>
+                        <p>
+                            <!-- Delete button -->
+                            <input type="submit" name="taxonomyengine_delete_google_credentials" id="taxonomyengine_delete_google_credentials" class="button button-secondary" value="<?php _e("Delete Google credentials", "taxonomyengine") ?>" onclick="return(confirm('Are you sure you want to delete your Google credentials?'))" />
+                        </p>
                     </td>
+                    <?php
+                    }
+                    ?>
                 </tr>
             </tbody>
         </table>

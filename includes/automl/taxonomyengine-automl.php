@@ -1,5 +1,7 @@
 <?php
 require_once(dirname(__DIR__) . '/../vendor/autoload.php');
+use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoML\V1\TextClassificationDatasetMetadata;
 
 class TaxonomyEngineAutoML {
     private $options = [
@@ -17,6 +19,28 @@ class TaxonomyEngineAutoML {
         add_action('admin_init', [ $this, 'register_settings' ]);
         add_action('admin_post_upload_google_credentials_file', [ $this, 'upload_google_credentials_file' ]);
         add_action('rest_api_init', [$this, 'register_api_routes' ]);
+        $this->setup_automl();
+    }
+
+    private function setup_automl() {
+        $credentials = self::get_google_credentials();
+        if (!$credentials) {
+            return [
+                'success' => false,
+                'message' => 'No credentials found'
+            ];
+        }
+        $this->client = new AutoMlClient([
+            'credentials' => $credentials
+        ]);
+        $this->formattedParent = $this->client->locationName($credentials['project_id'], 'us-central1');
+        
+        $dataset_id = get_option('taxonomyengine_automl_dataset_id');
+        // $datasets = $this->list_datasets();
+        // if (!in_array($dataset_id, $datasets)) {
+        if (!$dataset_id) {
+            return $this->dataset = $this->create_dataset(TAXONOMYENGINE_DEFAULT_DATASET_NAME);
+        }
     }
 
     public function settings_page() {
@@ -130,7 +154,44 @@ class TaxonomyEngineAutoML {
         
     }
 
-    function check_post_access(WP_REST_Request $request) {
+    public function list_datasets() {
+        $results = $this->client->listDatasets($this->formattedParent);
+        $datasets = [];
+        foreach ($results->iterateAllElements() as $element) {
+            $datasets[] = $element->getName();
+        }
+        return $datasets;
+    }
+
+    private function create_dataset($dataset_name) {
+        $dataset = new Google\Cloud\AutoMl\V1\Dataset([
+            'display_name' => '[DISPLAY_NAME]',
+            'text_classification_dataset_metadata' => new TextClassificationDatasetMetadata([
+                'classification_type' => Google\Cloud\AutoMl\V1\ClassificationType::MULTILABEL
+            ])
+        ]);
+        $dataset->setDisplayName($dataset_name);
+        $operationResponse = $this->client->createDataset($this->formattedParent, $dataset);
+        $operationResponse->pollUntilComplete();
+        if ($operationResponse->operationSucceeded()) {
+            $result = $operationResponse->getResult();
+            update_option( "taxonomyengine_automl_dataset_id", $result->getName() );
+        } else {
+            $error = $operationResponse->getError();
+            return [
+                'success' => false,
+                'message' => "Failed to create dataset $dataset_name",
+                "error" => $error->getMessage()
+            ];
+        }
+        return [
+            'success' => true,
+            'message' => "Dataset $dataset_name created",
+            'dataset' => $result->getName()
+        ];
+    }
+
+    private function check_post_access(WP_REST_Request $request) {
         return current_user_can('edit_posts');
     }
 }

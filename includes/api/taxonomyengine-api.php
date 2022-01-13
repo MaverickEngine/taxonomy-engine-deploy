@@ -1,4 +1,5 @@
 <?php
+// require_once("../automl/taxonomyengine-automl.php");
 
 class TaxonomyEngineAPI {
     function __construct($taxonomyengine_globals) {
@@ -62,6 +63,13 @@ class TaxonomyEngineAPI {
         register_rest_route( 'taxonomyengine/v1', '/reviewers/update_user_weight/(?P<user_id>[0-9]+)', [
             'methods' => 'POST',
             'callback' => [$this, 'update_user_weight'],
+            'permission_callback' => [$this, 'check_admin_access']
+        ]);
+        //AutoML
+        $automl = new TaxonomyEngineAutoML($this->taxonomyengine_globals);
+        register_rest_route( 'taxonomyengine/v1', '/automl/test_google_credentials', [
+            'methods' => 'POST',
+            'callback' => [$automl, 'test_google_credentials'],
             'permission_callback' => [$this, 'check_admin_access']
         ]);
     }
