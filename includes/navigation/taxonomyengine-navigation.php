@@ -41,6 +41,8 @@ class TaxonomyEngineNavigation {
                     $post = $this->latest_post($exclude_ids);
                 case "oldest":
                     $post = $this->oldest_post($exclude_ids);
+                case "popular":
+                    $post = $this->popular_post($exclude_ids);
                 default:
                     $post = $this->random_post($exclude_ids);
             }
@@ -86,6 +88,28 @@ class TaxonomyEngineNavigation {
             'exclude' => $exclude_ids,
         ]);
         return $posts[0];
+    }
+
+    function popular_post($exclude_ids) {
+        $client = new GuzzleHttp\Client([
+            'base_uri' => get_option('taxonomyengine_revengine_wordpress_api_url'),
+            'timeout'  => 10.0,
+        ]);
+        $date_last_month = date("Y-m-d", strtotime("-1 month"));
+        $response = $client->post("/random", 
+            [
+                'form_params' => [
+                    'size' => 1,
+                    'jitter_factor' => get_option('taxonomyengine_jitter_factor', 10),
+                    'ignore_post_ids' => $exclude_ids,
+                    'published_start_date' => $date_last_month
+                ],
+            ]
+        );
+        // Get article by post_id
+        $post_id = json_decode($response->getBody())->result[0]->key;
+        $post = get_post($post_id);
+        return $post;
     }
 
     function test_next_article() {

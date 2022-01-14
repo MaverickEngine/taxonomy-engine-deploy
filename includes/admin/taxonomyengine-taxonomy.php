@@ -19,6 +19,6 @@ class TaxonomyEngineTaxonomy {
     }
 
     function taxonomyengine_taxonomy() {
-		require_once plugin_dir_path( dirname( __FILE__ ) ).'../templates/admin/taxonomy.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ).'admin/views/taxonomy.php';
     }
 }

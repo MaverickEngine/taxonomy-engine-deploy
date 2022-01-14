@@ -8,6 +8,10 @@ class TaxonomyEngineSettings {
         "taxonomyengine_pass_score",
         "taxonomyengine_developer_mode",
         "taxonomyengine_default_starting_weight",
+        "taxonomyengine_next_article_start_date_limit",
+        "taxonomyengine_next_article_end_date_limit",
+        "taxonomyengine_revengine_wordpress_api_url",
+        "taxonomyengine_jitter_factor",
     ];
 
     const TAXONOMYENGINE_ARTICLE_SELECTION_STRATEGIES = [
@@ -59,7 +63,10 @@ class TaxonomyEngineSettings {
         if (empty(get_option('taxonomyengine_pass_score'))) {
             echo '<div class="notice notice-error"><p>TaxonomyEngine has no pass score set. Set <a href="/wp-admin/admin.php?page=taxonomyengine&taxonomyengine_set_pass_score=0.8">0.8</a> as the pass score?</p></div>';
         }
-		require_once plugin_dir_path( dirname( __FILE__ ) ).'../templates/admin/settings.php';
+        if (empty(get_option("taxonomyengine_revengine_wordpress_api_url")) && get_option("taxonomyengine_article_strategy") === "Popular") {
+            echo '<div class="notice notice-error"><p><strong>Warning</strong> TaxonomyEngine has no Revengine URL set, which is required for the Popular article selection strategy to work correcly.</p></div>';
+        }
+        require_once plugin_dir_path( dirname( __FILE__ ) ).'admin/views/settings.php';
     }
 
     public function register_settings() {

@@ -2,7 +2,7 @@
     <form method="post" action="options.php">
         <?php settings_fields( 'taxonomyengine-settings-group' ); ?>
         <?php do_settings_sections( 'taxonomyengine-settings-group' ); ?>
-        <h2><?php _e( 'TaxonomyEngine Settings', 'taxonomyengine' ); ?></h2>
+        <h1><?php _e( 'TaxonomyEngine Settings', 'taxonomyengine' ); ?></h1>
         <?php settings_errors(); ?>
         <hr>
         <table class="form-table">
@@ -20,7 +20,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><?php _e("Select article strategy", "taxonomyengine") ?></th>
+                    <th scope="row"><?php _e("Next article strategy", "taxonomyengine") ?></th>
                     <td>
                         <?php
                             $article_strategies = TaxonomyEngineSettings::get_article_strategies();
@@ -29,6 +29,36 @@
                                 echo '<input type="radio" name="taxonomyengine_article_strategy" value="' . $article_strategy . '" ' . $checked . '> ' . $article_strategy . '<br>';
                             }
                         ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e("Next article start date limit", "taxonomyengine") ?></th>
+                    <td>
+                        <input type="date" name="taxonomyengine_next_article_start_date_limit" id="taxonomyengine_next_article_start_date_limit" value="<?= get_option('taxonomyengine_next_article_start_date_limit') ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e("Next article end date limit", "taxonomyengine") ?></th>
+                    <td>
+                        <input type="date" name="taxonomyengine_next_article_end_date_limit" id="taxonomyengine_next_article_end_date_limit" value="<?= get_option('taxonomyengine_next_article_end_date_limit') ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <?php _e("RevEngine Wordpress API URL", "taxonomyengine") ?>
+                    </th>
+                    <td>
+                        <input type="url" name="taxonomyengine_revengine_wordpress_api_url" id="taxonomyengine_revengine_wordpress_api_url" value="<?= get_option('taxonomyengine_revengine_wordpress_api_url') ?>">
+                        <p><?php _e("Required for popular article strategy", "taxonomyengine") ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <?php _e("Random Article Jitter Factgor", "taxonomyengine") ?>
+                    </th>
+                    <td>
+                        <input type="number" name="taxonomyengine_jitter_factor" id="taxonomyengine_jitter_factor" value="<?= get_option('taxonomyengine_jitter_factor') ?>" min="1" max="20">
+                        <p><?php _e("Required for popular article strategy", "taxonomyengine") ?></p>
                     </td>
                 </tr>
                 <tr>
