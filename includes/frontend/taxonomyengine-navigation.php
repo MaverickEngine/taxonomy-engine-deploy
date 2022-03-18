@@ -3,27 +3,27 @@
 class TaxonomyEngineNavigation {
     function __construct($taxonomyengine_globals) {
         $this->taxonomyengine_globals = &$taxonomyengine_globals;
-        add_action('rest_api_init', [$this, 'register_api_routes' ]);
+        // add_action('rest_api_init', [$this, 'register_api_routes' ]);
         $this->post_types = get_option("taxonomyengine_post_types", ["posts"]);
         $this->taxonomyengine_db = new TaxonomyEngineDB($this->taxonomyengine_globals);
     }
 
-    function register_api_routes() {
-        register_rest_route( 'taxonomyengine/v1', '/next_article', [
-            'methods' => 'GET',
-            'callback' => [$this, 'get_next_article'],
-        ]);
-        register_rest_route( 'taxonomyengine/v1', '/next_article/redirect', [
-            'methods' => 'GET',
-            'callback' => [$this, 'get_next_article_redirect'],
-        ]);
-        register_rest_route( 'taxonomyengine/v1', '/next_article/test', [
-            'methods' => 'GET',
-            'callback' => [$this, 'test_next_article'],
-        ]);
-    }
+    // function register_api_routes() {
+    //     register_rest_route( 'taxonomyengine/v1', '/next_article', [
+    //         'methods' => 'GET',
+    //         'callback' => [$this, 'get_next_article'],
+    //     ]);
+    //     register_rest_route( 'taxonomyengine/v1', '/next_article/redirect', [
+    //         'methods' => 'GET',
+    //         'callback' => [$this, 'get_next_article_redirect'],
+    //     ]);
+    //     register_rest_route( 'taxonomyengine/v1', '/next_article/test', [
+    //         'methods' => 'GET',
+    //         'callback' => [$this, 'test_next_article'],
+    //     ]);
+    // }
 
-    function get_next_article() {
+    public function get_next_article() {
         try {
             define('WP_DEBUG', true);
             define('WP_DEBUG_LOG', true);
@@ -37,12 +37,16 @@ class TaxonomyEngineNavigation {
             switch ($strategy) {
                 case "random":
                     $post = $this->random_post($exclude_ids);
+                    break;
                 case "latest":
                     $post = $this->latest_post($exclude_ids);
+                    break;
                 case "oldest":
                     $post = $this->oldest_post($exclude_ids);
+                    break;
                 case "popular":
                     $post = $this->popular_post($exclude_ids);
+                    break;
                 default:
                     $post = $this->random_post($exclude_ids);
             }
@@ -54,7 +58,8 @@ class TaxonomyEngineNavigation {
 
     function get_next_article_redirect() {
         $next_article = $this->get_next_article();
-        header("Location: " . get_permalink($next_article->ID));
+        print_r($next_article);
+        print "<script>window.location.href = '" . get_permalink($next_article->ID) . "';</script>";
         die();
     }
 
