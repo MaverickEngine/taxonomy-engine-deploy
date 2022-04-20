@@ -12,7 +12,7 @@ class TaxonomyEngineFrontendReviewer {
         add_action( 'wp_footer', array( $this, 'print_scripts' ) );
         add_filter( 'the_content', array( $this, 'append_reviewer_content') );
         require_once(plugin_basename('taxonomyengine-navigation.php' ) );
-        $this->taxonomyengine_navigation = new TaxonomyEngineNavigation($taxonomyengine_globals);
+        $this->taxonomyengine_navigation = new TaxonomyEngineNavigation([]);
     }
 
     /**

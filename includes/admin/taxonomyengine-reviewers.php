@@ -26,6 +26,7 @@ class TaxonomyEngineReviewers {
     }
 
     public function save_changes() {
+        if (!isset($_POST["taxonomyengine_reviewer_weight"])) return;
         $reviewer_weights = $_POST["taxonomyengine_reviewer_weight"];
         if (isset($reviewer_weights)) {
             foreach ($reviewer_weights as $reviewer_id => $weight) {

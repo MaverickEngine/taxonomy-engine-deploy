@@ -4,7 +4,7 @@ rm -rf includes
 rm -rf templates
 rm -rf data
 rm -rf dist
-wget https://github.com/j-norwood-young/taxonomy-engine/archive/refs/heads/main.zip
+wget https://github.com/maverickengine/taxonomy-engine/archive/refs/heads/main.zip
 unzip main.zip
 rm main.zip
 rm taxonomy-engine-main/README.md

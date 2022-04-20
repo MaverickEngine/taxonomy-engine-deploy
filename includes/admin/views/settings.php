@@ -85,6 +85,15 @@
                         <input type="checkbox" name="taxonomyengine_developer_mode" value="1" <?php echo get_option('taxonomyengine_developer_mode') ? 'checked' : '' ?>>
                     </td>
                 </tr>
+                <?php if (get_option('taxonomyengine_developer_mode')) { ?>
+                <tr>
+                    <th scope="row"><?php _e("Reset Taxonomy", "taxonomyengine") ?></th>
+                    <td>
+                        <!-- //button -->
+                        <input type="button" name="taxonomyengine_reset_taxonomy" value="<?php _e("Reset Taxonomy", "taxonomyengine") ?>" class="button button-danger" style="background-color: #d63638; border-color: #d63638; color: white" onclick="if (confirm('This will reset the taxonomy to default. Are you sure?')) { location.href='/wp-admin/admin.php?page=taxonomyengine&taxonomyengine_reset_terms=true'; }">
+                    </td>
+                </tr>
+                <?php } ?>
             </tbody>
         </table>
         <?=	submit_button(); ?>

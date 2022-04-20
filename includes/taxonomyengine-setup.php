@@ -101,26 +101,29 @@ class TaxonomyEngineSetup {
     }
 
     public static function check_setup_tasks() {
-        if ($_GET["taxonomyengine_predefined_terms"]) {
+        if (isset($_GET["taxonomyengine_predefined_terms"])) {
             self::create_predefined_terms();
         }
+        if (isset($_GET["taxonomyengine_reset_terms"])) {
+            self::reset_terms();
+        }
         $redirect = false;
-        if ($_GET["delete_terms"]) {
+        if (isset($_GET["delete_terms"])) {
             self::delete_terms();
         }
-        if ($_GET["taxonomyengine_set_post_type"]) {
+        if (isset($_GET["taxonomyengine_set_post_type"])) {
             update_option( "taxonomyengine_post_types", explode(",", $_GET["taxonomyengine_set_post_type"]) );
             $redirect = true;
         }
-        if ($_GET["taxonomyengine_set_article_strategy"]) {
+        if (isset($_GET["taxonomyengine_set_article_strategy"])) {
             update_option( "taxonomyengine_article_strategy", $_GET["taxonomyengine_set_article_strategy"] );
             $redirect = true;
         }
-        if ($_GET["taxonomyengine_set_percentage_pass"]) {
+        if (isset($_GET["taxonomyengine_set_percentage_pass"])) {
             update_option( "taxonomyengine_percentage_pass", $_GET["taxonomyengine_set_percentage_pass"] );
             $redirect = true;
         }
-        if ($_GET["taxonomyengine_set_pass_score"]) {
+        if (isset($_GET["taxonomyengine_set_pass_score"])) {
             update_option( "taxonomyengine_pass_score", $_GET["taxonomyengine_set_pass_score"] );
             $redirect = true;
         }
@@ -149,15 +152,17 @@ class TaxonomyEngineSetup {
             } else {
                 $parent_id = 0;
             }
-            wp_insert_term(
-                $item->name,
-                'taxonomyengine',
-                array(
-                    'description'=> $item->description,
-                    'slug' => $item->slug,
-                    'parent' => $parent_id
-                )
-            );
+            if (!term_exists($item->slug, "taxonomyengine")) {
+                wp_insert_term(
+                    $item->name,
+                    'taxonomyengine',
+                    array(
+                        'description'=> $item->description,
+                        'slug' => $item->slug,
+                        'parent' => $parent_id
+                    )
+                );
+            }
             if (isset($item->children)) {
                 self::_convert_taxonomy($item->children);
             }
@@ -172,6 +177,11 @@ class TaxonomyEngineSetup {
         if (!empty($existing_terms)) {
             return;
         }
+        $fname = plugin_dir_path( dirname( __FILE__ ) ).'/data/default_taxonomy.json';
+        self::_convert_taxonomy(json_decode(file_get_contents($fname)));
+    }
+
+    private static function reset_terms() {
         $fname = plugin_dir_path( dirname( __FILE__ ) ).'/data/default_taxonomy.json';
         self::_convert_taxonomy(json_decode(file_get_contents($fname)));
     }
