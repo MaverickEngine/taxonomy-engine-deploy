@@ -12,9 +12,9 @@ class TaxonomyEngineScripts {
      */
     public function enqueue_scripts() {
         if (get_option('taxonomyengine_developer_mode')) {
-            wp_enqueue_script( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+            wp_enqueue_script( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.js', __FILE__ ), array( 'jquery' ), '1.2.0', true );
         } else {
-            wp_enqueue_script( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.min.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+            wp_enqueue_script( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.min.js', __FILE__ ), array( 'jquery' ), '1.2.0', true );
         }
     }
 
@@ -23,9 +23,9 @@ class TaxonomyEngineScripts {
      */
     public function enqueue_styles() {
         if (get_option('taxonomyengine_developer_mode')) {
-            wp_enqueue_style( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.css', __FILE__ ), array(), '1.0.0' );
+            wp_enqueue_style( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.css', __FILE__ ), array(), '1.2.0' );
         } else {
-            wp_enqueue_style( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.min.css', __FILE__ ), array(), '1.0.0' );
+            wp_enqueue_style( 'taxonomyengine', plugins_url( '../../dist/taxonomyengine.min.css', __FILE__ ), array(), '1.2.0' );
         }
     }
 
