@@ -86,7 +86,7 @@ class TaxonomyEngineFrontendReviewer {
         if ($this->_show_content()) {
             ob_start();
             require_once(plugin_dir_path( dirname( __FILE__ ) ).'../templates/frontend/reviewer_post.php');
-            $new_content .= ob_get_clean();
+            $new_content = ob_get_clean();
             return $content . $new_content;
         } else {
             return $content;

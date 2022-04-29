@@ -25,9 +25,9 @@ class TaxonomyEngineNavigation {
 
     public function get_next_article() {
         try {
-            define('WP_DEBUG', true);
-            define('WP_DEBUG_LOG', true);
-            define('WP_DEBUG_DISPLAY', true);
+            // define('WP_DEBUG', true);
+            // define('WP_DEBUG_LOG', true);
+            // define('WP_DEBUG_DISPLAY', true);
             @ini_set('display_errors', 1);
             $strategy = strtolower(get_option( "taxonomyengine_article_strategy", "random" ));
             $reviews = $this->taxonomyengine_db->reviewed_posts(get_current_user_id());
