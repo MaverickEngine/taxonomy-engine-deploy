@@ -20,6 +20,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <th scope="row"><?php _e("Require answer before moving to next question", "taxonomyengine") ?></th>
+                    <td>
+                        <input type="checkbox" name="taxonomyengine_require_answer" value="1" <?php echo get_option('taxonomyengine_require_answer') ? 'checked' : '' ?>>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php _e("Instruction text", "taxonomyengine") ?></th>
+                    <td>
+                        <textarea name="taxonomyengine_instruction_text" rows="5" cols="50"><?php echo get_option('taxonomyengine_instruction_text') ?></textarea>
+                    </td>
+                </tr>
+                <tr>
                     <th scope="row"><?php _e("Next article strategy", "taxonomyengine") ?></th>
                     <td>
                         <?php

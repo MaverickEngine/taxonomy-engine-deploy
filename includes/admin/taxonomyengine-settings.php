@@ -12,6 +12,8 @@ class TaxonomyEngineSettings {
         "taxonomyengine_next_article_end_date_limit",
         "taxonomyengine_revengine_wordpress_api_url",
         "taxonomyengine_jitter_factor",
+        "taxonomyengine_require_answer",
+        "taxonomyengine_instruction_text",
     ];
 
     const TAXONOMYENGINE_ARTICLE_SELECTION_STRATEGIES = [

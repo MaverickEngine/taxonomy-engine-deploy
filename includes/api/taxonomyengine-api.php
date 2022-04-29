@@ -117,7 +117,7 @@ class TaxonomyEngineAPI {
         $post_id = $request->get_param('post_id');
         $selected = array_map(function($term) {
             return $term->term_id;
-        }, get_the_terms($post_id, "taxonomyengine"));
+        }, get_the_terms($post_id, "taxonomyengine") ?: []);
         $taxonomyengine_review = $this->taxonomyengine_db->get_user_post_taxonomy(get_current_user_id(), $post_id);
         $user_selected = array_map(function($taxonomy_review) {
             return $taxonomy_review->taxonomy_id;
