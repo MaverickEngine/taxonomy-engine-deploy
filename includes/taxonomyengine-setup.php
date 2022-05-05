@@ -167,6 +167,7 @@ class TaxonomyEngineSetup {
                 self::_convert_taxonomy($item->children);
             }
         }
+        delete_option('taxonomyengine_children');
     }
 
     private static function create_predefined_terms() {
