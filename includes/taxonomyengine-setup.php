@@ -39,7 +39,7 @@ class TaxonomyEngineSetup {
 
     public function db_setup() {
         $taxonomyengine_db_version = get_option("taxonomyengine_db_version", 0 );
-        if ($taxonomyengine_db_version === TAXONOMYENGINE_DB_VERSION) {
+        if ($taxonomyengine_db_version == TAXONOMYENGINE_DB_VERSION) {
             return;
         }
         global $wpdb;

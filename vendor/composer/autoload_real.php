@@ -27,7 +27,7 @@ class ComposerAutoloaderInitbf2694c8eec635c69356ba5c11c65db9
         spl_autoload_unregister(array('ComposerAutoloaderInitbf2694c8eec635c69356ba5c11c65db9', 'loadClassLoader'));
 
         require __DIR__ . '/autoload_static.php';
-        \Composer\Autoload\ComposerStaticInitbf2694c8eec635c69356ba5c11c65db9::getInitializer($loader)();
+        call_user_func(\Composer\Autoload\ComposerStaticInitbf2694c8eec635c69356ba5c11c65db9::getInitializer($loader));
 
         $loader->register(true);
 
