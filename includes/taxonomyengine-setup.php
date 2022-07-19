@@ -19,17 +19,18 @@ class TaxonomyEngineSetup {
     }
 
     public function taxonomy_setup() {
-        register_taxonomy( "taxonomyengine", ["post"], [
+        $post_types = get_option('taxonomyengine_post_types');
+        register_taxonomy( "taxonomyengine", $post_types, [
             "hierarchical" => true,
             "label" => "TaxonomyEngine",
             "show_ui" => true,
-            "show_admin_column" => true,
+            "show_admin_column" => false,
             'show_in_rest' => true,
             "query_var" => true,
             "rewrite" => array( "slug" => "taxonomyengine" ),
             "public" => true,
-            "show_in_menu" => true,
-            "show_admin_column" => true,
+            "show_in_menu" => false,
+            "show_in_quick_edit" => true,
         ]);
     }
 
