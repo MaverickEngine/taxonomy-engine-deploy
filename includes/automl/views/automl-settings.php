@@ -5,18 +5,22 @@ $google_credentials = TaxonomyEngineAutoML::get_google_credentials();
     <h2><?php _e( 'TaxonomyEngine AutoML Settings', 'taxonomyengine' ); ?></h2>
     <form action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post" enctype="multipart/form-data">
         <?php
-        if ($_GET['upload_google_credentials_file'] == 'success') {
-            echo '<div id="message" class="updated notice is-dismissible"><p>Google credentials file uploaded successfully.</p></div>';
-        }
-        if ($_GET['upload_google_credentials_file'] == 'error') {
-            echo '<div id="message" class="error notice is-dismissible"><p>Error uploading Google credentials file.</p></div>';
-        }
-        if ($_GET['upload_google_credentials_file'] == 'deleted') {
-            echo '<div id="message" class="updated notice is-dismissible"><p>Google credentials file deleted.</p></div>';
+        if (isset($_GET['upload_google_credentials_file'])) {
+            if ($_GET['upload_google_credentials_file'] == 'success') {
+                echo '<div id="message" class="updated notice is-dismissible"><p>Google credentials file uploaded successfully.</p></div>';
+            }
+            if ($_GET['upload_google_credentials_file'] == 'error') {
+                echo '<div id="message" class="error notice is-dismissible"><p>Error uploading Google credentials file.</p></div>';
+            }
+            if ($_GET['upload_google_credentials_file'] == 'deleted') {
+                echo '<div id="message" class="updated notice is-dismissible"><p>Google credentials file deleted.</p></div>';
+            }
         }
         ?>
         <input type="hidden" name="action" value="upload_google_credentials_file">
-        <input type="hidden" name="_wp_nonce" value="<?php echo wp_create_nonce('upload_google_credentials_file'); ?>">
+        <?php
+            wp_nonce_field( "upload_google_credentials_file" );
+        ?>
         <table class="form-table">
             <tbody>
                 <tr>
@@ -37,15 +41,15 @@ $google_credentials = TaxonomyEngineAutoML::get_google_credentials();
                     <td>
                         <p class="description">
                             <strong><?php _e("Project ID:", "taxonomyengine") ?></strong>
-                            <?= $google_credentials["project_id"] ?>
+                            <?php esc_html_e($google_credentials["project_id"]) ?>
                         </p>
                         <p class="description">
                             <strong><?php _e("Client email:", "taxonomyengine") ?></strong>
-                            <?= $google_credentials["client_email"] ?>
+                            <?php esc_html_e($google_credentials["client_email"]) ?>
                         </p>
                         <p class="description">
                             <strong><?php _e("Dataset ID:", "taxonomyengine") ?></strong>
-                            <?= get_option("taxonomyengine_automl_dataset_id") ?>
+                            <?php esc_html_e(get_option("taxonomyengine_automl_dataset_id")) ?>
                         </p>
                         <p>
                             <!-- Delete button -->
@@ -58,6 +62,6 @@ $google_credentials = TaxonomyEngineAutoML::get_google_credentials();
                 </tr>
             </tbody>
         </table>
-        <?=	submit_button(); ?>
+        <?php esc_html_e(submit_button()); ?>
     </form>
 </div>

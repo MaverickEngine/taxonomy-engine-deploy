@@ -200,7 +200,7 @@
                 "slug": "story-type-review"
             },
             {
-                "name": "Reader storify/Hearken",
+                "name": "Reader Storify",
                 "parent": "story-type",
                 "description": "",
                 "slug": "story-type-reader-storify-hearken"
@@ -226,76 +226,82 @@
         ]
     },
     {
-        "name": "Story production",
-        "slug": "story-production",
-        "description": "The content being produced",
-        "question": "What is the main means of production?",
+        "name": "Article elements",
+        "slug": "article-elements",
+        "description": "Which elements appear in the article?",
+        "question": "Which elements appear in the article? Select all that apply",
         "children": [
             {
                 "name": "Text",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-text"
+                "slug": "article-elements-text"
             },
             {
                 "name": "Video",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-video"
+                "slug": "article-elements-video"
             },
             {
                 "name": "Photos",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-photos"
+                "slug": "article-elements-photos"
             },
             {
                 "name": "Audio",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-audio"
+                "slug": "article-elements-audio"
             },
             {
                 "name": "Document",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-document"
+                "slug": "article-elements-document"
             },
             {
                 "name": "Graphs/charts",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-graphs-charts"
+                "slug": "article-elements-graphs-charts"
             },
             {
                 "name": "Surveys/questionnaire",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-surveys-questionnaire"
+                "slug": "article-elements-surveys-questionnaire"
             },
             {
                 "name": "Interactive/timeline",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-interactive-timeline"
+                "slug": "article-elements-interactive-timeline"
             },
             {
                 "name": "Map",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-map"
+                "slug": "article-elements-map"
             },
             {
                 "name": "Other",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-other"
+                "slug": "article-elements-other"
             },
             {
                 "name": "None",
-                "parent": "story-production",
+                "parent": "article-elements",
                 "description": "",
-                "slug": "story-production-none"
+                "slug": "article-elements-none"
+            },
+            {
+                "name": "Social media embeds",
+                "parent": "article-elements",
+                "description": "Twitter, Facebook, Instagram, etc.",
+                "slug": "article-elements-social-media-embeds"
             }
         ]
     },
@@ -312,10 +318,22 @@
                 "slug": "story-topic-automotive"
             },
             {
-                "name": "Careers and Education",
+                "name": "Business",
                 "parent": "story-topic",
                 "description": "",
-                "slug": "story-topic-careers-and-education"
+                "slug": "story-topic-business"
+            },
+            {
+                "name": "Conflict",
+                "parent": "story-topic",
+                "description": "",
+                "slug": "story-topic-conflict"
+            },
+            {
+                "name": "Education",
+                "parent": "story-topic",
+                "description": "",
+                "slug": "story-topic-education"
             },
             {
                 "name": "Economy",
@@ -342,10 +360,10 @@
                 "slug": "story-topic-food-and-drink"
             },
             {
-                "name": "Health and Fitness",
+                "name": "Health",
                 "parent": "story-topic",
                 "description": "",
-                "slug": "story-topic-health-and-fitness"
+                "slug": "story-topic-health"
             },
             {
                 "name": "Hobbies and Interests",
@@ -372,10 +390,10 @@
                 "slug": "story-topic-government-and-politics"
             },
             {
-                "name": "News",
+                "name": "Media",
                 "parent": "story-topic",
                 "description": "",
-                "slug": "story-topic-news"
+                "slug": "story-topic-media"
             },
             {
                 "name": "Personal Finance",
@@ -436,6 +454,36 @@
                 "parent": "story-topic",
                 "description": "",
                 "slug": "story-topic-travel"
+            },
+            {
+                "name": "Marketing",
+                "parent": "story-topic",
+                "description": "",
+                "slug": "story-topic-marketing"
+            },
+            {
+                "name": "Crime",
+                "parent": "story-topic",
+                "description": "",
+                "slug": "story-topic-crime"
+            },
+            {
+                "name": "Climate and Nature",
+                "parent": "story-topic",
+                "description": "",
+                "slug": "story-topic-climate-nature"
+            },
+            {
+                "name": "Media",
+                "parent": "story-topic",
+                "description": "",
+                "slug": "story-topic-media"
+            },
+            {
+                "name": "Wellness",
+                "parent": "story-topic",
+                "description": "",
+                "slug": "story-topic-wellness"
             }
         ]
     },
@@ -448,38 +496,38 @@
             {
                 "name": "Divert me",
                 "parent": "story-user-need",
-                "description": "",
+                "description": "Show me something lighter, less serious connected to the news",
                 "slug": "story-user-need-divert-me"
             },
             {
                 "name": "Educate me",
                 "parent": "story-user-need",
-                "description": "",
+                "description": "Help me understand the news/learn more about a story",
                 "slug": "story-user-need-educate-me"
             },
             {
                 "name": "Give me perspective",
                 "parent": "story-user-need",
-                "description": "",
+                "description": "Help me form an opinion with an analysis of the news, what it means",
                 "slug": "story-user-need-give-me-perspective"
+            },
+            {
+                "name": "Inspire me",
+                "parent": "story-user-need",
+                "description": "Leave me with a good feeling of hope, inspiration, that there is still good in the world",
+                "slug": "story-user-need-inspire-me"
             },
             {
                 "name": "Keep me on trend",
                 "parent": "story-user-need",
-                "description": "",
+                "description": "What are other people saying about a topic?",
                 "slug": "story-user-need-keep-me-on-trend"
             },
             {
                 "name": "Update me",
                 "parent": "story-user-need",
-                "description": "",
+                "description": "A regular news story, the basics that you need to know",
                 "slug": "story-user-need-update-me"
-            },
-            {
-                "name": "Inspire me",
-                "parent": "story-user-need",
-                "description": "",
-                "slug": "story-user-need-inspire-me"
             }
         ]
     }

@@ -25,10 +25,6 @@ class TaxonomyEngineNavigation {
 
     public function get_next_article() {
         try {
-            // define('WP_DEBUG', true);
-            // define('WP_DEBUG_LOG', true);
-            // define('WP_DEBUG_DISPLAY', true);
-            @ini_set('display_errors', 1);
             $strategy = strtolower(get_option( "taxonomyengine_article_strategy", "random" ));
             $reviews = $this->taxonomyengine_db->reviewed_posts(get_current_user_id());
             $exclude_ids = array_map(function($review) {
@@ -58,7 +54,7 @@ class TaxonomyEngineNavigation {
 
     function get_next_article_redirect() {
         $next_article = $this->get_next_article();
-        print_r($next_article);
+        // print_r($next_article);
         print "<script>window.location.href = '" . get_permalink($next_article->ID) . "';</script>";
         die();
     }
@@ -98,9 +94,9 @@ class TaxonomyEngineNavigation {
     function popular_post($exclude_ids) {
         $client = new GuzzleHttp\Client([
             'base_uri' => get_option('taxonomyengine_revengine_wordpress_api_url'),
-            'timeout'  => 10.0,
+            'timeout'  => 2,
         ]);
-        $date_last_month = date("Y-m-d", strtotime("-1 month"));
+        $date_last_month = gmdate("Y-m-d", strtotime("-1 month"));
         $response = $client->post("/random", 
             [
                 'form_params' => [

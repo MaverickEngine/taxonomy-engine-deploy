@@ -26,6 +26,13 @@ class TaxonomyEngineReviewers {
     }
 
     public function save_changes() {
+        // Check nonce
+        if (!isset($_POST['taxonomyengine_reviewers_nonce']) || wp_verify_nonce($_POST['taxonomyengine_reviewers_nonce'], 'taxonomyengine_reviewers')) {
+           return;
+        }
+        if (!current_user_can('manage_options')) {
+            return;
+        }
         if (!isset($_POST["taxonomyengine_reviewer_weight"])) return;
         $reviewer_weights = $_POST["taxonomyengine_reviewer_weight"];
         if (isset($reviewer_weights)) {

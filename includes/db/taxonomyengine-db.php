@@ -1,7 +1,5 @@
 <?php
-// TODO: This needs a cleanup before launch
-// TODO: Bring setup in here
-// TODO: Rethink table names
+
 class TaxonomyEngineDB {
     public function __construct() {
         global $wpdb;
@@ -13,8 +11,9 @@ class TaxonomyEngineDB {
     public function get_or_create_review($user_id, $post_id) {
         global $wpdb;
         $passed = $this->get_passed_post($post_id);
+        if (empty($passed)) return;
         if ($passed->id) {
-            $review_id = $wpdb->get_var("SELECT id FROM $this->reviews_tablename WHERE user_id = $user_id AND post_id = $post_id");
+            $review_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM %s WHERE user_id = %d AND post_id = %d", array($this->reviews_tablename, $user_id, $post_id)));
             return (object) [
                 'id' => $review_id,
                 'post_id' => $post_id,
@@ -24,7 +23,7 @@ class TaxonomyEngineDB {
                 'terms' => wp_get_post_terms($post_id, "taxonomyengine"),
             ];
         }
-        $result = $wpdb->get_row("SELECT * FROM {$this->reviews_tablename} WHERE post_id = $post_id AND user_id = $user_id");
+        $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE post_id = %d AND user_id = %d", array($this->reviews_tablename, $post_id, $user_id)));
         if (!$result) {
             $user_score = get_user_meta( $user_id, 'taxonomyengine_reviewer_weight', true );
             $wpdb->insert($this->reviews_tablename, [
@@ -62,21 +61,18 @@ class TaxonomyEngineDB {
         ], [
             'id' => $review_id,
         ]);
-        return $wpdb->get_row("SELECT * FROM {$this->reviews_tablename} WHERE id = $review_id");
+        return $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE id = %d", array($this->reviews_tablename, $review_id)));
     }
 
     public function get_user_taxonomy($review_id) {
         global $wpdb;
-        $result = $wpdb->get_results("SELECT * FROM {$this->taxonomy_tablename} WHERE taxonomyengine_review_id = $review_id");
+        $result = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s WHERE taxonomyengine_review_id = %d", array($this->taxonomy_tablename, $review_id)));
         return $result;
     }
 
     public function get_user_post_taxonomy($user_id, $post_id) {
         global $wpdb;
-        $sql = "SELECT {$this->taxonomy_tablename}.* FROM {$this->taxonomy_tablename} 
-        JOIN {$this->reviews_tablename} ON {$this->reviews_tablename}.id = {$this->taxonomy_tablename}.taxonomyengine_review_id 
-        WHERE {$this->reviews_tablename}.user_id = $user_id AND {$this->reviews_tablename}.post_id = $post_id";
-        $result = $wpdb->get_results($sql);
+        $result = $wpdb->get_results($wpdb->prepare('SELECT %1$s.* FROM %1$s JOIN %2$s ON %2$s.id = %1$s.taxonomyengine_review_id WHERE %2$s.user_id = %3$d AND %2$s.post_id = %4$d', array($this->taxonomy_tablename, $this->reviews_tablename, $user_id, $post_id)));
         return $result;
     }
 
@@ -99,16 +95,18 @@ class TaxonomyEngineDB {
 
     public function reviewed_posts($user_id) {
         global $wpdb;
-        $sql = "SELECT {$this->reviews_tablename}.post_id, {$this->reviews_tablename}.review_end FROM {$this->reviews_tablename}
-        WHERE {$this->reviews_tablename}.user_id = $user_id AND {$this->reviews_tablename}.review_end IS NOT NULL";
-        return $wpdb->get_results($sql);
+        return $wpdb->get_results($wpdb->prepare('SELECT %1$s.post_id, %1$s.review_end 
+        FROM %1$s
+        WHERE %1$s.user_id = %2d 
+        AND %1$s.review_end IS NOT NULL', 
+        array($this->reviews_tablename, $user_id)));
     }
 
     public function articles_reviewed_report() {
         global $wpdb;
-        $sql = "SELECT {$this->reviews_tablename}.user_id, COUNT(*) AS count FROM {$this->reviews_tablename}
-        GROUP BY {$this->reviews_tablename}.user_id";
-        return $wpdb->get_results($sql);
+        return $wpdb->get_results($wpdb->prepare('SELECT %1$s.user_id, COUNT(*) AS count FROM %1$s
+        GROUP BY %1$s.user_id', 
+        $this->reviews_tablename));
     }
 
     public function pass_post($post_id, $score = 0) {
@@ -117,43 +115,37 @@ class TaxonomyEngineDB {
             'post_id' => $post_id,
             'score' => $score
         ]);
-        $result = $wpdb->get_row("SELECT * FROM {$this->passed_posts_tablename} WHERE post_id = $post_id");
+        $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE post_id = %d", array($this->passed_posts_tablename, $post_id)));
         return $result;
     }
 
     public function get_passed_post($post_id) {
         global $wpdb;
-        $sql = "SELECT * FROM {$this->passed_posts_tablename} WHERE post_id = $post_id";
-        return $wpdb->get_row($sql);
+        return $wpdb->get_row($wpdb->prepare('SELECT * FROM %s WHERE post_id = %d', array($this->passed_posts_tablename, $post_id)));
     }
 
     public function get_review_score($post_id) {
         global $wpdb;
-        $sql = "SELECT SUM(user_score) AS score FROM {$this->reviews_tablename} WHERE post_id = $post_id AND (review_end IS NOT NULL OR review_end != '0000-00-00 00:00:00') ";
-        return $wpdb->get_var($sql);
+        return $wpdb->get_var($wpdb->prepare('SELECT SUM(user_score) AS score FROM %s WHERE post_id = %d AND (review_end IS NOT NULL OR review_end != "0000-00-00 00:00:00") ', array($this->reviews_tablename, $post_id)));
     }
 
     public function get_taxonomy_score($review_id, $taxonomy_id) {
         global $wpdb;
-        $sql = "SELECT SUM(user_score) AS score FROM {$this->taxonomy_tablename} WHERE taxonomyengine_review_id = $review_id AND taxonomy_id = $taxonomy_id";
-        return $wpdb->get_var($sql);
+        return $wpdb->get_var($wpdb->prepare('SELECT SUM(user_score) AS score FROM %s WHERE taxonomyengine_review_id = %d AND taxonomy_id = %d', array($this->taxonomy_tablename, $review_id, $taxonomy_id)));
     }
 
     public function get_matched_tag_score($post_id) {
         global $wpdb;
-        $sql = "SELECT {$this->taxonomy_tablename}.taxonomy_id, {$this->reviews_tablename}.user_id FROM {$this->taxonomy_tablename} 
-        JOIN {$this->reviews_tablename} ON {$this->reviews_tablename}.id = {$this->taxonomy_tablename}.taxonomyengine_review_id 
-        WHERE {$this->reviews_tablename}.post_id = $post_id";
-        $result = $wpdb->get_results($sql);
+        $result = $wpdb->get_results($wpdb->prepare('SELECT %1$s.taxonomy_id, %2$s.user_id FROM %1$s
+        JOIN %2$s ON %2$s.id = %1$s.taxonomyengine_review_id
+        WHERE %2$s.post_id = %3$d', array($this->taxonomy_tablename, $this->reviews_tablename, $post_id)));
         return $result;
     }
 
     public function review_end_histogram() {
         global $wpdb;
-        $sql = "SELECT date({$this->reviews_tablename}.review_end) AS date, COUNT(1) AS count 
-        FROM {$this->reviews_tablename}
-        WHERE review_end IS NOT NULL AND review_end != '0000-00-00'
-        GROUP BY 1";
-        return $wpdb->get_results($sql);
+        return $wpdb->get_results($wpdb->prepare('SELECT date(%s.review_end) AS date, COUNT(1) AS count
+        FROM %s
+        WHERE review_end IS NOT NULL AND review_end != "0000-00-00"', array($this->reviews_tablename)));
     }
 }
