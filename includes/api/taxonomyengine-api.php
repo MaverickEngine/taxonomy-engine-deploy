@@ -66,12 +66,12 @@ class TaxonomyEngineAPI {
             'permission_callback' => [$this, 'check_admin_access']
         ]);
         //AutoML
-        $automl = new TaxonomyEngineAutoML($this->taxonomyengine_globals);
-        register_rest_route( 'taxonomyengine/v1', '/automl/test_google_credentials', [
-            'methods' => 'POST',
-            'callback' => [$automl, 'test_google_credentials'],
-            'permission_callback' => [$this, 'check_admin_access']
-        ]);
+        // $automl = new TaxonomyEngineAutoML($this->taxonomyengine_globals);
+        // register_rest_route( 'taxonomyengine/v1', '/automl/test_google_credentials', [
+        //     'methods' => 'POST',
+        //     'callback' => [$automl, 'test_google_credentials'],
+        //     'permission_callback' => [$this, 'check_admin_access']
+        // ]);
     }
 
     function check_post_access(WP_REST_Request $request) { // TODO: This needs to be changed for crowdsourced submissions, or have another endpoint for that
@@ -221,7 +221,12 @@ class TaxonomyEngineAPI {
 
     public function get_reviewers(WP_REST_Request $request) {
         try {
-            $page = $_GET['page'];
+            if (!current_user_can('manage_options')) {
+                throw new Exception("You do not have permission to access this resource");
+            }
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+            }
             if (!$page) {
                 $page = 1;
             }
@@ -268,7 +273,11 @@ class TaxonomyEngineAPI {
     public function search_users(WP_REST_Request $request) {
         try {
             $data = json_decode(file_get_contents('php://input'), true);
-            $page = $_GET['page'];
+            if (isset($_GET['page'])) { 
+                $page = $_GET['page'];
+            } else {
+                $page = 1;
+            }
             return $this->_search($data, $page);
         } catch (Exception $e) {
             return new WP_REST_Response([ "success" => false, "error" => $e->getMessage() ], 400);

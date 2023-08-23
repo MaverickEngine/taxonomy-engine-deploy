@@ -13,7 +13,7 @@ class TaxonomyEngineDB {
         $passed = $this->get_passed_post($post_id);
         if (empty($passed)) return;
         if ($passed->id) {
-            $review_id = $wpdb->get_var($wpdb->prepare("SELECT id FROM %s WHERE user_id = %d AND post_id = %d", array($this->reviews_tablename, $user_id, $post_id)));
+            $review_id = $wpdb->get_var($wpdb->prepare('SELECT id FROM %1$s WHERE user_id = %d AND post_id = %d', array($this->reviews_tablename, $user_id, $post_id)));
             return (object) [
                 'id' => $review_id,
                 'post_id' => $post_id,
@@ -23,7 +23,7 @@ class TaxonomyEngineDB {
                 'terms' => wp_get_post_terms($post_id, "taxonomyengine"),
             ];
         }
-        $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE post_id = %d AND user_id = %d", array($this->reviews_tablename, $post_id, $user_id)));
+        $result = $wpdb->get_row($wpdb->prepare('SELECT * FROM %1$s WHERE post_id = %d AND user_id = %d', array($this->reviews_tablename, $post_id, $user_id)));
         if (!$result) {
             $user_score = get_user_meta( $user_id, 'taxonomyengine_reviewer_weight', true );
             $wpdb->insert($this->reviews_tablename, [
@@ -61,12 +61,12 @@ class TaxonomyEngineDB {
         ], [
             'id' => $review_id,
         ]);
-        return $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE id = %d", array($this->reviews_tablename, $review_id)));
+        return $wpdb->get_row($wpdb->prepare('SELECT * FROM %1$s WHERE id = %d', array($this->reviews_tablename, $review_id)));
     }
 
     public function get_user_taxonomy($review_id) {
         global $wpdb;
-        $result = $wpdb->get_results($wpdb->prepare("SELECT * FROM %s WHERE taxonomyengine_review_id = %d", array($this->taxonomy_tablename, $review_id)));
+        $result = $wpdb->get_results($wpdb->prepare('SELECT * FROM %1$s WHERE taxonomyengine_review_id = %d', array($this->taxonomy_tablename, $review_id)));
         return $result;
     }
 
@@ -115,23 +115,23 @@ class TaxonomyEngineDB {
             'post_id' => $post_id,
             'score' => $score
         ]);
-        $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM %s WHERE post_id = %d", array($this->passed_posts_tablename, $post_id)));
+        $result = $wpdb->get_row($wpdb->prepare('SELECT * FROM %1$s WHERE post_id = %d', array($this->passed_posts_tablename, $post_id)));
         return $result;
     }
 
     public function get_passed_post($post_id) {
         global $wpdb;
-        return $wpdb->get_row($wpdb->prepare('SELECT * FROM %s WHERE post_id = %d', array($this->passed_posts_tablename, $post_id)));
+        return $wpdb->get_row($wpdb->prepare('SELECT * FROM %1$s WHERE post_id = %d', array($this->passed_posts_tablename, $post_id)));
     }
 
     public function get_review_score($post_id) {
         global $wpdb;
-        return $wpdb->get_var($wpdb->prepare('SELECT SUM(user_score) AS score FROM %s WHERE post_id = %d AND (review_end IS NOT NULL OR review_end != "0000-00-00 00:00:00") ', array($this->reviews_tablename, $post_id)));
+        return $wpdb->get_var($wpdb->prepare('SELECT SUM(user_score) AS score FROM %1$s WHERE post_id = %d AND (review_end IS NOT NULL OR review_end != "0000-00-00 00:00:00") ', array($this->reviews_tablename, $post_id)));
     }
 
     public function get_taxonomy_score($review_id, $taxonomy_id) {
         global $wpdb;
-        return $wpdb->get_var($wpdb->prepare('SELECT SUM(user_score) AS score FROM %s WHERE taxonomyengine_review_id = %d AND taxonomy_id = %d', array($this->taxonomy_tablename, $review_id, $taxonomy_id)));
+        return $wpdb->get_var($wpdb->prepare('SELECT SUM(user_score) AS score FROM %1$s WHERE taxonomyengine_review_id = %d AND taxonomy_id = %d', array($this->taxonomy_tablename, $review_id, $taxonomy_id)));
     }
 
     public function get_matched_tag_score($post_id) {
@@ -144,8 +144,8 @@ class TaxonomyEngineDB {
 
     public function review_end_histogram() {
         global $wpdb;
-        return $wpdb->get_results($wpdb->prepare('SELECT date(%s.review_end) AS date, COUNT(1) AS count
-        FROM %s
+        return $wpdb->get_results($wpdb->prepare('SELECT date(%1$s.review_end) AS date, COUNT(1) AS count
+        FROM %1$s
         WHERE review_end IS NOT NULL AND review_end != "0000-00-00"', array($this->reviews_tablename)));
     }
 }
