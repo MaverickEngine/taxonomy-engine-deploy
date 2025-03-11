@@ -3,7 +3,6 @@ class TaxonomyEngineSetup {
     function __construct() {
         add_action( "init", array( $this, "taxonomy_setup" ), 10 );
         add_action( "init", array( $this, "db_setup" ), 10 );
-        add_action( "admin_init", array( $this, "ensure_roles" ), 10 );
         add_action('profile_update', [ $this, 'set_reviewer_weight' ], 20, 2 );
         add_action('user_register', [ $this, 'set_reviewer_weight' ], 20, 2 );
         add_action("admin_init", [ $this, "check_setup_tasks" ], 10);
@@ -32,10 +31,6 @@ class TaxonomyEngineSetup {
             "show_in_menu" => false,
             "show_in_quick_edit" => true,
         ]);
-    }
-
-    public function ensure_roles() {
-        add_role( TAXONOMYENGINE_REVIEWER_ROLE, __(TAXONOMYENGINE_REVIEWER_ROLE_NAME));
     }
 
     public function db_setup() {

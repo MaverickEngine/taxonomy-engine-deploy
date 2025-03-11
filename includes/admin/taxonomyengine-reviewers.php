@@ -1,6 +1,8 @@
 <?php
 
 class TaxonomyEngineReviewers {
+    private $taxonomyengine_globals;
+    private $taxonomyengine_db;
     private $options = [];
     
     function __construct($taxonomyengine_globals) {

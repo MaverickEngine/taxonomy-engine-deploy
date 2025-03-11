@@ -1,6 +1,8 @@
 <?php
 
 class TaxonomyEngineReports {
+    private $taxonomyengine_globals;
+    private $taxonomyengine_db;
     
     public function __construct($taxonomyengine_globals) {
         $this->taxonomyengine_globals = &$taxonomyengine_globals;

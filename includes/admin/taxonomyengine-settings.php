@@ -1,6 +1,8 @@
 <?php
 
 class TaxonomyEngineSettings {
+    private $taxonomyengine_globals;
+
     private $options = [
         "taxonomyengine_post_types",
         "taxonomyengine_article_strategy",

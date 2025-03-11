@@ -5,7 +5,7 @@
  * Description: Categorise your WordPress content with the assistance of machine learning and crowdsourcing
  * Author: Daily Maverick, Jason Norwood-Young
  * Author URI: https://dailymaverick.co.za
- * Version: 0.3.0
+ * Version: 0.4.0
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * WC requires at least: 5.8.0
@@ -36,11 +36,11 @@ add_action( 'init', 'taxonomy_engine_admin_init' );
 // }
 // add_action( 'init', 'taxonomy_engine_navigation_init', 2);
 
-function taxonomy_engine_frontend_init() {
-    require_once( plugin_dir_path( __FILE__ ) . 'includes/frontend/taxonomyengine-frontend-reviewer.php' );
-    new TaxonomyEngineFrontendReviewer([]);
-}
-add_action( 'init', 'taxonomy_engine_frontend_init', 3 );
+// function taxonomy_engine_frontend_init() {
+//     require_once( plugin_dir_path( __FILE__ ) . 'includes/frontend/taxonomyengine-frontend-reviewer.php' );
+//     new TaxonomyEngineFrontendReviewer([]);
+// }
+// add_action( 'init', 'taxonomy_engine_frontend_init', 3 );
 
 function taxonomy_engine_api_init() {
     require_once(plugin_basename('includes/api/taxonomyengine-api.php' ) );

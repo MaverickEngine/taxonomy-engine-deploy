@@ -1,6 +1,7 @@
 <?php
 
 class TaxonomyEngineAdmin {
+    private $taxonomyengine_globals;
 
     function __construct($taxonomyengine_globals) {
         $this->taxonomyengine_globals = &$taxonomyengine_globals;
